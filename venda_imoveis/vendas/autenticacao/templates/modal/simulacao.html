@@ -1,0 +1,72 @@
+<!-- Button trigger modal -->
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Simulação de Venda</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form action="." method="post">
+                    {% csrf_token %}
+                    {{ form_venda.as_p }}
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+              <button type="button" class="btn btn-secondary" id="simular{{imovel}}">
+                    Salvar
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+{%block scripts%}
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    document.getElementById("id_imovel").classList.add("form-control");
+    document.getElementById("id_valor").classList.add("form-control");
+    document.getElementById("id_corretor").classList.add("form-control");
+    document.getElementById("id_cliente").classList.add("form-control");
+    document.getElementById("id_condicao_pagamento").classList.add("form-control");
+
+</script>
+
+<script>
+    
+  $("#simular{{imovel}}").click(function() {
+    var imovel_id=$('#id_imovel').val();
+    var valor=$('#id_valor').val();
+    var corretor_id=$('#id_corretor').val();
+    var cliente_id=$('#id_cliente').val();
+    var forma_pagamento=$('#id_condicao_pagamento').val();
+
+
+    $.ajax({
+        url: '{% url "simulacao" %}',
+        type: "GET", //send it through get method,
+        data: {
+            'imovel': imovel_id,
+            'valor': valor,
+            'corretor':corretor_id,
+            'cliente':cliente_id,
+            'forma_pagamento':forma_pagamento
+        },
+        success: function(data) {
+            Swal.fire(
+            '',
+            'Simulação criada com sucesso!',
+            ''
+            )
+            setInterval('location.reload()', 2000);
+        }
+    });
+  });
+</script>
+
+{%endblock%}
