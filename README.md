@@ -6,7 +6,7 @@ Repositorio criado para o desafio de programação proposto no processo seletivo
 Acesse o repositorio do [desafio](https://github.com/AlanJaeger/desafio_programacao) e faça o clone do mesmo.
 
 ## Requesito
-É necessário ter o gerenciador de pacotes [PIP](https://pip.pypa.io/en/stable/) para instalar os requeriments do projeto.
+É necessário ter o gerenciador de pacotes [PIP](https://pip.pypa.io/en/stable/) e o python instalado para instalar os requeriments do projeto.
 
 
 ## Criando a env.
