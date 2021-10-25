@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{%block content%}
+
+{% if messages %}
+<ul class="alert alert-danger" style="list-style: none; margin-top:10px">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+             <div class="card-body">
+                <h1>Edição de Cliente</h1>
+                <form method="POST">
+                {% csrf_token %}
+                    
+                <!-- form variable -->    
+                 {{ form.as_p }} 
+                
+                  <input type="submit" name="sumbit">
+                </form>
+                
+             </div>
+        </div>
+    </div>
+</div>
+
+
+
+{%endblock%}
+
+{%block scripts%}
+<script>
+    document.getElementById("id_nome").classList.add("form-control");
+    document.getElementById("id_cpf").classList.add("form-control");
+    document.getElementById("id_email").classList.add("form-control");
+    document.getElementById("id_telefone").classList.add("form-control");
+</script>
+{%endblock%}
