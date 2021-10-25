@@ -10,6 +10,8 @@ from .models import Cliente, Venda, Imovel
 from .forms import ClienteForm, SimulacaoForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+import locale
+
 
 
 
@@ -93,6 +95,12 @@ class SimulacaoView(View):
         corretor_ = User.objects.get(id=corretor)
         cliente_ = Cliente.objects.get(id=cliente)
 
+        valor_original = float(valor)
+
+
+        comissao = valor_original * 0.05
+
+
         print(imovel)
         print(valor)
         print(corretor)
@@ -104,7 +112,8 @@ class SimulacaoView(View):
             valor = valor,
             corretor = corretor_,
             cliente = cliente_,
-            condicao_pagamento = forma_pagamento
+            condicao_pagamento = forma_pagamento,
+            comissao = comissao
         )
         
         return JsonResponse({},safe=False)
@@ -118,6 +127,19 @@ class ResumoView(ListView):
         imovel = Imovel.objects.filter(id=pk, ativo=True).first()
         print(imovel)
         venda = Venda.objects.filter(ativo=True, imovel=imovel)
+        print(venda)
+
+        ctx['vendas'] = venda
+
+        return render(self.request, self.template_name, ctx)
+
+class ImprimirRecibo(ListView):
+    model = Venda  
+    template_name = "impressao_recibo.html"
+
+    def get(self, request,pk):
+        ctx = {}
+        venda = Venda.objects.filter(id=pk,ativo=True)
         print(venda)
 
         ctx['vendas'] = venda

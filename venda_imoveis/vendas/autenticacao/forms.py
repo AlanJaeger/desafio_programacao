@@ -31,7 +31,7 @@ class SimulacaoForm(ModelForm):
     
     class Meta:
         model = Venda
-        fields = '__all__'
+        fields = ['imovel','valor','corretor','cliente','condicao_pagamento']
 
     def __init__(self,*args,**kwargs):
         super(SimulacaoForm, self).__init__(*args, **kwargs)

@@ -20,7 +20,7 @@ from django.contrib.auth import views
 from django.conf.urls.static import static
 from django.conf import settings
 
-from autenticacao.views import ResumoView,SimulacaoView,ListaUnidadesView,ListagemClientesView, CadastrarClienteView, DeletarClienteView,EditarClienteView
+from autenticacao.views import ImprimirRecibo,ResumoView,SimulacaoView,ListaUnidadesView,ListagemClientesView, CadastrarClienteView, DeletarClienteView,EditarClienteView
 from autenticacao.forms import LoginForm
 
 
@@ -35,7 +35,7 @@ urlpatterns = [
     path('recibo/<slug:pk>', ResumoView.as_view(), name='recibo'),
     path('listagem-unidades/', ListaUnidadesView.as_view(), name='listagem-unidades'), 
     path('simulacao/', SimulacaoView.as_view(), name='simulacao'), 
-
+    path('imprimir-recibo/<slug:pk>', ImprimirRecibo.as_view(), name='imprimir-recibo'), 
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
