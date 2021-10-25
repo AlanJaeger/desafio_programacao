@@ -1,0 +1,57 @@
+
+<head>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        
+            <!-- mask -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            
+</head>
+<body onload="window.print()">
+        <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                          {%for venda in vendas%}
+                            {%if forloop.first%}
+                              <H1>
+                                  {{venda.imovel.localizacao}}
+                              </H1>
+                            {%endif%}
+                          {%endfor%}
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Tipo do Imóvel</th>
+                                    <th scope="col">Forma de Pagamento</th>
+                                    <th scope="col">Cliente</th>    
+                                    <th scope="col">Corretor</th>    
+                                    <th scope="col">Valor da Comissão</th>   
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                {%for venda in vendas%}
+                                  <tr>
+                                    <td>{{venda.imovel.tipo}}</td>
+                                    <td>{{venda.condicao_pagamento}}</td>
+                                    <td>{{venda.cliente.nome}}</td>
+                                    <td>{{venda.corretor}}</td>
+                                    <td>R${{venda.comissao}}</td>    
+                                    
+                                    
+                                  </tr>
+                                  
+                                {%endfor%}
+                                </tbody>
+                              </table>
+                        </div>
+                      </div>
+                </div>
+            </div>
+</body>
+
+{%block scripts%}
+
+{%endblock%}
+

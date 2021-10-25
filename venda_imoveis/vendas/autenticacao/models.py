@@ -26,7 +26,7 @@ class Venda(models.Model):
     corretor = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=("corretor"), on_delete=models.CASCADE)
     cliente = models.ForeignKey("Cliente", verbose_name=("cliente"), on_delete=models.CASCADE)
     condicao_pagamento = models.CharField(max_length=30, verbose_name=("Forma de Pagamento"), choices=FORMAPAGAMENTO_CHOICES, null=True)
-    
+    comissao = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     
 class Imovel(models.Model):
     ativo = models.BooleanField(default=True)
