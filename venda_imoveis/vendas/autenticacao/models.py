@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 
-# Create your models here.
+# tabela de clients
 class Cliente(models.Model):
     ativo = models.BooleanField(default=True)
     nome = models.CharField(max_length=100)
@@ -15,6 +15,7 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nome
 
+# tabela de venda
 class Venda(models.Model):
     FORMAPAGAMENTO_CHOICES = (
         ("À Vista", "À Vista"),
@@ -28,6 +29,7 @@ class Venda(models.Model):
     condicao_pagamento = models.CharField(max_length=30, verbose_name=("Forma de Pagamento"), choices=FORMAPAGAMENTO_CHOICES, null=True)
     comissao = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     
+# tabela de imovel
 class Imovel(models.Model):
     ativo = models.BooleanField(default=True)
     disponivel = models.BooleanField(default=True)
