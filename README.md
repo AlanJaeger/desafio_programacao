@@ -16,3 +16,8 @@ Com a env criada, ative ela com o comando source env/bin/activate e rode o coman
 
 ## Rodando o projeto.
 Com a env ativada, acesse a pasta vendas e rode o comando python manage.py runserver
+
+## Credenciais
+Para acessar o sistema use as seguintes credenciais
+usuario: alan
+senha: #alan@123
