@@ -14,7 +14,7 @@ import locale
 
 
 
-
+##View responsavel pela listagem dos clientes
 class ListagemClientesView(ListView):
     model = Cliente
     template_name = "listagem_clientes.html"
@@ -26,6 +26,8 @@ class ListagemClientesView(ListView):
 
         return render(self.request, self.template_name, ctx)
 
+
+##View responsavel pelo cadastro de clientes
 class CadastrarClienteView(CreateView):
     model = Cliente
     template_name = "cadastro_clientes.html"
@@ -49,6 +51,7 @@ class CadastrarClienteView(CreateView):
             print(form.errors)
             return render(self.request, self.template_name, ctx)
 
+#View responsavel por deletar clientes
 class DeletarClienteView(View):
     def get(self, request):
         ctx = {}
@@ -63,12 +66,14 @@ class DeletarClienteView(View):
 
         return JsonResponse({},safe=False)
 
+#View responsavel pela edição de clientes
 class EditarClienteView(UpdateView):
     model = Cliente
     fields = ['nome','cpf','email','telefone']
     template_name = "editar_clientes.html"
     success_url="/listagem-clientes"
 
+#view responsavel pela listagem de imoveis
 class ListaUnidadesView(ListView):
     model = Imovel  
     template_name = "listagem_unidades.html"
@@ -82,6 +87,7 @@ class ListaUnidadesView(ListView):
 
         return render(self.request, self.template_name, ctx)
 
+#view responável pela simulacao de venda
 class SimulacaoView(View):
     def get(self, request):
         ctx = {}
@@ -118,6 +124,7 @@ class SimulacaoView(View):
         
         return JsonResponse({},safe=False)
 
+#view responsavel pela listagem de simulacoes
 class ResumoView(ListView):
     model = Venda  
     template_name = "recibo.html"
@@ -133,6 +140,7 @@ class ResumoView(ListView):
 
         return render(self.request, self.template_name, ctx)
 
+#view responsavel por imprimir o recibo das simulacoes
 class ImprimirRecibo(ListView):
     model = Venda  
     template_name = "impressao_recibo.html"

@@ -4,11 +4,12 @@ from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm, TextInput, Select, CheckboxInput, DateInput, NumberInput
 from autenticacao.models import *
 
+# formulario de login
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}), label='Usuario')
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}), label='Senha')
 
-
+#formulario de cadastro de cliente
 class ClienteForm(ModelForm):
     """
     Formulário de cadastro de cliente.
@@ -23,7 +24,7 @@ class ClienteForm(ModelForm):
             'email': TextInput(attrs={'class': 'form-control'}),
             'telefone': NumberInput(attrs={'class': 'form-control'}),
         }
-
+#formulario de simulacao de venda
 class SimulacaoForm(ModelForm):
     """
     Formulário de simulação de venda.
